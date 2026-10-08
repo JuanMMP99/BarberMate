@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BarberMate | Tu Barbería en Oaxaca</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Inria+Sans:wght@300;400;700&family=Montserrat:wght@400;500;600;700;800&family=Lobster&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <!-- Íconos SVG reutilizables -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-mustache" viewBox="0 0 76 34">
+      <path fill="currentColor"
+        d="M38 8C32 8 30 12 24 12 18 12 14 6 7 6 3 6 1 8 0 10c3-1 6 0 8 2 4 4 6 14 16 18 6 3 10 1 14 1s8 2 14-1c10-4 12-14 16-18 2-2 5-3 8-2-1-2-3-4-7-4-7 0-11 6-17 6-6 0-8-4-14-4z" />
+    </symbol>
+  </svg>
+
+  <!-- BOTÓN FLOTANTE DE WHATSAPP -->
+  <div class="whatsapp-widget-container" id="wa-widget">
+    <div class="wa-popup" id="wa-popup">
+      <div class="wa-popup-header">
+        <div class="d-flex align-items-center gap-2">
+          <div class="wa-avatar">B</div>
+          <div>
+            <h6>BarberMate</h6>
+            <small class="opacity-75">Responde en minutos</small>
+          </div>
+        </div>
+        <button class="btn-close btn-close-white btn-sm" id="close-popup" aria-label="Cerrar"></button>
+      </div>
+      <div class="wa-popup-body p-3">
+        <div class="wa-bubble">
+          <p class="m-0">💈 ¡Hola! ¿Te gustaría agendar una cita?</p>
+        </div>
+      </div>
+      <div class="wa-popup-footer p-3 border-top">
+        <a href="#" class="btn btn-gold w-100" id="wa-widget-btn" target="_blank" rel="noopener">
+          <i class="bi bi-whatsapp"></i> Chatear por WhatsApp
+        </a>
+      </div>
+    </div>
+    <button class="whatsapp-btn" id="wa-main-trigger" aria-label="Abrir chat de WhatsApp">
+      <i class="bi bi-whatsapp"></i>
+      <span class="btn-text">WhatsApp</span>
+    </button>
+  </div>
+
+  <!-- HEADER / NAVEGACIÓN -->
+  <header class="main-header" id="mainHeader">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand brand-logo" href="index.html" aria-label="BarberMate">
+          <span class="brand-word">Barber</span>
+          <svg>
+            <use href="#i-mustache" />
+          </svg>
+        </a>
+        <div class="d-flex align-items-center gap-2 order-lg-last ms-auto ms-lg-3">
+          <!-- Carrito deshabilitado temporalmente
+          <button class="cart-btn" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas" aria-label="Mis citas">
+            <i class="bi bi-calendar-check"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-gold"
+              id="cart-badge">0</span>
+          </button>
+          -->
+          <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+            aria-label="Menú">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link active" href="#hero">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="#nosotros">Nosotros</a></li>
+            <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+            <li class="nav-item"><a class="nav-link" href="#galeria">Galería</a></li>
+            <li class="nav-item"><a class="nav-link" href="#equipo">Equipo</a></li>
+            <li class="nav-item"><a class="nav-link" href="#precios">Precios</a></li>
+            <li class="nav-item"><a class="nav-link" href="#ubicacion">Ubicación</a></li>
+            <li class="nav-item"><a class="nav-link nav-cta" href="servicios.html">Reservar Cita</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="hero" class="hero-section">
+    <div class="container hero-content">
+      <svg class="hero-mustache">
+        <use href="#i-mustache" />
+      </svg>
+      <h1 class="hero-title">Eleva tu look con la <span class="text-gold">barba perfecta</span></h1>
+      <p class="hero-call">Llámanos: <a href="tel:+529514990142">+52 951 499 0142</a></p>
+      <div class="hero-promo">✂️ Primer corte 10% OFF · Código: <strong>BARBER10</strong></div>
+      <div>
+        <a href="servicios.html" class="btn btn-gold btn-lg-bm">Reservar cita</a>
+      </div>
+    </div>
+  </section>
+  <div class="glow-wrap">
+    <div class="glow-line"></div>
+  </div>
+
+  <!-- NOSOTROS -->
+  <section id="nosotros" class="section-about section-pad has-noise">
+    <div class="container">
+      <div class="section-heading">
+        <div class="heading-row">
+          <h2>Nosotros</h2>
+        </div>
+        <span class="sub">¿Quiénes somos?</span>
+      </div>
+      <div class="row align-items-center g-5 justify-content-center">
+        <div class="col-lg-5 offset-lg-1">
+          <div class="about-text">
+            <p>BarberMate nació en 2018 con la misión de ofrecer una experiencia de barbería premium en Oaxaca.
+              Combinamos técnicas clásicas con tendencias modernas en un ambiente único.</p>
+            <p>Cortes precisos, afeitado con navaja y atención personalizada, para que salgas con el estilo que buscas.
+            </p>
+            <a href="servicios.html" class="btn btn-gold px-5 py-2 mt-3">Reserva tu experiencia</a>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="about-image">
+            <img src="img/about.jpg" alt="Barbero arreglando la barba de un cliente" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios" class="section-services section-pad has-noise">
+    <div class="container">
+      <div class="section-heading">
+        <div class="heading-row">
+          <h2><svg>
+              <use href="#i-mustache" />
+            </svg>Servicios</h2>
+        </div>
+        <span class="sub">Lo que hacemos</span>
+      </div>
+      <div class="row g-4 justify-content-center" id="servicesContainer">
+        <div class="col-12 text-center py-4">
+          <div class="spinner-border text-gold" role="status"></div>
+          <p class="text-muted mt-3">Cargando servicios...</p>
+        </div>
+      </div>
+      <div class="text-center mt-5">
+        <a href="servicios.html" class="btn btn-outline-gold px-5 py-2">Ver todos los servicios</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERÍA -->
+  <section id="galeria" class="section-gallery section-pad has-noise">
+    <div class="container">
+      <div class="section-heading on-orange">
+        <div class="heading-row">
+          <h2>Galería</h2>
+        </div>
+        <span class="sub">Lo que hemos creado</span>
+      </div>
+      <div class="gallery-filters" id="galleryFilters">
+        <button class="active" data-filter="all">Todo</button>
+        <button data-filter="beard">Barba</button>
+        <button data-filter="hair">Cabello</button>
+        <button data-filter="mustache">Bigote</button>
+        <button data-filter="children">Niños</button>
+        <button data-filter="others">Otros</button>
+      </div>
+      <div class="gallery-grid" id="galleryGrid">
+        <div class="gallery-title-tile" id="galleryTitleTile">
+          <h3>Nuestra galería</h3>
+          <span>Lo que hemos creado</span>
+        </div>
+        <div class="gallery-item" data-cat="others"><img src="img/gallery-01.jpg" alt="Herramientas de barbería"
+            loading="lazy" /></div>
+        <div class="gallery-item" data-cat="hair"><img src="img/gallery-02.jpg" alt="Corte con máquina"
+            loading="lazy" /></div>
+        <div class="gallery-item" data-cat="hair"><img src="img/gallery-03.jpg" alt="Corte de cabello" loading="lazy" />
+        </div>
+        <div class="gallery-item" data-cat="children"><img src="img/gallery-04.jpg" alt="Corte infantil"
+            loading="lazy" /></div>
+        <div class="gallery-item" data-cat="hair"><img src="img/gallery-05.jpg" alt="Peinado con peine"
+            loading="lazy" /></div>
+        <div class="gallery-item" data-cat="children"><img src="img/gallery-06.jpg" alt="Corte degradado"
+            loading="lazy" /></div>
+        <div class="gallery-item" data-cat="beard"><img src="img/gallery-07.jpg" alt="Afeitado" loading="lazy" /></div>
+        <div class="gallery-item" data-cat="mustache"><img src="img/gallery-08.jpg" alt="Estilo con bigote"
+            loading="lazy" /></div>
+        <div class="gallery-item" data-cat="children"><img src="img/gallery-09.jpg" alt="Corte para niño"
+            loading="lazy" /></div>
+        <div class="gallery-item" data-cat="others"><img src="img/gallery-10.jpg" alt="Barbería" loading="lazy" /></div>
+        <div class="gallery-item" data-cat="beard"><img src="img/gallery-11.jpg" alt="Arreglo de barba"
+            loading="lazy" /></div>
+      </div>
+      <div class="text-center mt-5">
+        <a href="https://instagram.com/barbermate" target="_blank" rel="noopener" class="btn btn-dark-grad">Más
+          fotos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EQUIPO -->
+  <section id="equipo" class="section-team section-pad">
+    <div class="container">
+      <div class="section-heading">
+        <div class="heading-row">
+          <h2>Nuestro equipo</h2>
+        </div>
+        <span class="sub">Nuestros barberos</span>
+      </div>
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-6 col-lg-3">
+          <div class="team-card">
+            <img class="avatar" src="img/team-1.jpg" alt="Carlos Martínez" loading="lazy" />
+            <h5>Carlos Martínez</h5>
+            <div class="role">Especialista en cortes clásicos</div>
+            <div class="exp"><i class="bi bi-star-fill text-gold"></i> 8 años de experiencia</div>
+            <a href="servicios.html" class="btn btn-outline-gold">Reservar</a>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="team-card">
+            <img class="avatar" src="img/team-2.jpg" alt="Javier Reyes" loading="lazy" />
+            <h5>Javier Reyes</h5>
+            <div class="role">Especialista en degradados</div>
+            <div class="exp"><i class="bi bi-star-fill text-gold"></i> 6 años de experiencia</div>
+            <a href="servicios.html" class="btn btn-outline-gold">Reservar</a>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="team-card">
+            <img class="avatar" src="img/team-3.jpg" alt="Miguel Ángel" loading="lazy" />
+            <h5>Miguel Ángel</h5>
+            <div class="role">Especialista en barba</div>
+            <div class="exp"><i class="bi bi-star-fill text-gold"></i> 5 años de experiencia</div>
+            <a href="servicios.html" class="btn btn-outline-gold">Reservar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRECIOS -->
+  <section id="precios" class="section-pricing section-pad has-noise">
+    <div class="container">
+      <div class="section-heading">
+        <div class="heading-row">
+          <h2>Precios</h2>
+        </div>
+        <span class="sub">Sin sorpresas</span>
+      </div>
+      <div class="row g-4 justify-content-center">
+        <div class="col-sm-6 col-lg-3">
+          <div class="pricing-card">
+            <img class="icon" src="img/service-1.png" alt="" />
+            <h4>Corte Clásico</h4>
+            <div class="pricing-price">$300 <span>MXN</span></div>
+            <div class="pricing-duration"><i class="bi bi-clock"></i> 45 min</div>
+            <button class="btn btn-gold w-100 mt-3 py-2" onclick="addToCart('s001')">Reservar</button>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="pricing-card featured">
+            <div class="pricing-badge">Más popular</div>
+            <img class="icon" src="img/service-2.png" alt="" />
+            <h4>Corte + Barba</h4>
+            <div class="pricing-price">$500 <span>MXN</span></div>
+            <div class="pricing-duration"><i class="bi bi-clock"></i> 60 min</div>
+            <button class="btn btn-gold w-100 mt-3 py-2" onclick="addToCart('s002')">Reservar</button>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="pricing-card">
+            <img class="icon" src="img/service-3.png" alt="" />
+            <h4>Arreglo de Barba</h4>
+            <div class="pricing-price">$250 <span>MXN</span></div>
+            <div class="pricing-duration"><i class="bi bi-clock"></i> 30 min</div>
+            <button class="btn btn-gold w-100 mt-3 py-2" onclick="addToCart('s003')">Reservar</button>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="pricing-card">
+            <img class="icon" src="img/service-4.png" alt="" />
+            <h4>Afeitado Clásico</h4>
+            <div class="pricing-price">$350 <span>MXN</span></div>
+            <div class="pricing-duration"><i class="bi bi-clock"></i> 40 min</div>
+            <button class="btn btn-gold w-100 mt-3 py-2" onclick="addToCart('s004')">Reservar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALGUNAS CIFRAS -->
+  <section id="cifras" class="section-facts section-pad has-noise">
+    <div class="container">
+      <div class="section-heading">
+        <div class="heading-row">
+          <h2>Algunas cifras</h2>
+        </div>
+        <span class="sub">Nuestros números</span>
+      </div>
+      <div class="row g-4 justify-content-center">
+        <div class="col-6 col-lg-3 fact-item">
+          <div class="num">+500</div>
+          <h5>Clientes felices</h5>
+          <p>Y contando</p>
+        </div>
+        <div class="col-6 col-lg-3 fact-item">
+          <div class="num">4.9</div>
+          <h5>Calificación</h5>
+          <p>Promedio de nuestros clientes</p>
+        </div>
+        <div class="col-6 col-lg-3 fact-item">
+          <div class="num">3</div>
+          <h5>Barberos expertos</h5>
+          <p>Con años de experiencia</p>
+        </div>
+        <div class="col-6 col-lg-3 fact-item">
+          <div class="num">2018</div>
+          <h5>Desde</h5>
+          <p>Cortando con estilo en Oaxaca</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAPA / UBICACIÓN -->
+  <section id="ubicacion" class="section-map section-pad has-noise">
+    <div class="container">
+      <div class="section-heading">
+        <div class="heading-row">
+          <h2>Ubicación</h2>
+        </div>
+        <span class="sub">Dónde encontrarnos</span>
+      </div>
+      <div class="row g-4 align-items-stretch">
+        <div class="col-lg-7">
+          <div class="map-frame">
+            <iframe title="Mapa de BarberMate"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3827.975418536648!2d-96.71321830954406!3d17.073253875705028!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c722320e258fe1%3A0x97541b2e039a6cb3!2sCentro%20Hist%C3%B3rico%2C%20Oaxaca%20de%20Ju%C3%A1rez%2C%20Oax.%2C%20M%C3%A9xico!5e0!3m2!1ses-419!2smx!4v1786468837109!5m2!1ses-419!2smx"
+              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="d-flex flex-column gap-3 h-100">
+            <div class="info-card">
+              <div class="ico"><i class="bi bi-geo-alt-fill"></i></div>
+              <div>
+                <h5>Dirección</h5>
+                <p>Centro Histórico, 68000 Oaxaca de Juárez, Oax.</p>
+              </div>
+            </div>
+            <div class="info-card">
+              <div class="ico"><i class="bi bi-clock-fill"></i></div>
+              <div>
+                <h5>Horarios</h5>
+                <p>Lun–Sáb: 9:00 AM – 9:00 PM<br />Dom: 10:00 AM – 6:00 PM</p>
+              </div>
+            </div>
+            <div class="info-card">
+              <div class="ico"><i class="bi bi-telephone-fill"></i></div>
+              <div>
+                <h5>Teléfono</h5>
+                <p><a href="tel:+529514990142">+52 951 499 0142</a></p>
+              </div>
+            </div>
+            <a class="btn btn-gold py-3 mt-auto"
+              href="https://www.google.com/maps/search/?api=1&query=Centro+Hist%C3%B3rico+Oaxaca+de+Ju%C3%A1rez"
+              target="_blank" rel="noopener"><i class="bi bi-signpost-split me-2"></i>Cómo llegar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO (envía el mensaje por WhatsApp) -->
+  <section id="contacto" class="section-contact section-pad">
+    <div class="container">
+      <div class="section-heading">
+        <div class="heading-row">
+          <h2>Contacto</h2>
+        </div>
+        <span class="sub">Escríbenos</span>
+      </div>
+      <form class="contact-form" id="contactForm">
+        <div class="row g-3">
+          <div class="col-md-6 field">
+            <label for="cfName">Nombre</label>
+            <input type="text" id="cfName" required autocomplete="name" />
+          </div>
+          <div class="col-md-6 field">
+            <label for="cfPhone">Teléfono</label>
+            <input type="tel" id="cfPhone" autocomplete="tel" />
+          </div>
+          <div class="col-12 field">
+            <label for="cfSubject">Asunto</label>
+            <input type="text" id="cfSubject" />
+          </div>
+          <div class="col-12 field">
+            <label for="cfMessage">Mensaje</label>
+            <textarea id="cfMessage" rows="3" required></textarea>
+          </div>
+        </div>
+        <div class="text-center mt-2">
+          <button type="submit" class="btn btn-gold btn-lg-bm"><i class="bi bi-whatsapp me-2"></i>Enviar
+            mensaje</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="row g-5 align-items-start">
+        <div class="col-lg-4">
+          <div class="footer-heading">
+            <h4>Nosotros<small>Quiénes somos</small></h4>
+          </div>
+          <p class="footer-text">BarberMate es una barbería premium en el Centro Histórico de Oaxaca. Cortes clásicos,
+            afeitado con navaja y atención personalizada desde 2018.</p>
+        </div>
+        <div class="col-lg-4">
+          <div class="footer-heading">
+            <h4>Redes sociales<small>Síguenos</small></h4>
+          </div>
+          <div class="social-row">
+            <a href="https://facebook.com/barbermate" target="_blank" rel="noopener" aria-label="Facebook"><i
+                class="bi bi-facebook"></i></a>
+            <a href="https://instagram.com/barbermate" target="_blank" rel="noopener" aria-label="Instagram"><i
+                class="bi bi-instagram"></i></a>
+            <a href="https://wa.me/529514990142" target="_blank" rel="noopener" aria-label="WhatsApp"><i
+                class="bi bi-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="footer-box">
+            <p>Agenda tu próxima cita</p>
+            <a href="servicios.html" class="btn btn-gold w-100 py-2">Reservar cita</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 BarberMate. Todos los derechos reservados.</div>
+  </footer>
+
+  <!-- OFFCANVAS CARRITO -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title"><i class="bi bi-calendar-check text-gold me-2"></i>Mis <span
+          class="text-gold">Citas</span></h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column justify-content-between p-0">
+      <div class="cart-items-wrapper p-3 overflow-y-auto" id="cart-items-container">
+        <div class="text-center py-5 text-muted">
+          <i class="bi bi-calendar-x display-3 mb-2 d-block opacity-50"></i>
+          <p class="mb-0">No tienes citas agendadas</p>
+        </div>
+      </div>
+      <div class="cart-footer p-3">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="total-label fw-bold">Total:</span>
+          <span class="total-value fw-bold text-gold fs-5" id="cart-total-price">$0 MXN</span>
+        </div>
+        <div class="d-grid gap-2">
+          <button class="btn btn-gold py-3" id="btn-proceed-checkout" onclick="openCheckoutModal()">
+            Confirmar Cita <i class="bi bi-arrow-right ms-2"></i>
+          </button>
+          <button class="btn btn-link btn-sm text-decoration-none" onclick="clearCart()">Vaciar Carrito</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL CHECKOUT -->
+  <!-- MODAL CHECKOUT -->
+  <div class="modal fade" id="orderModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="bi bi-calendar-check text-gold me-2"></i>Confirmar <span
+              class="text-gold">Cita</span></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <form id="orderForm">
+            <div class="hp-field" aria-hidden="true">
+              <label for="formWebsite">Deja este campo vacío</label>
+              <input type="text" id="formWebsite" name="website" tabindex="-1" autocomplete="off">
+            </div>
+
+            <div class="summary-box">
+              <div class="summary-title"><i class="bi bi-list-ul me-2"></i>Resumen de tu cita</div>
+              <ul class="summary-items" id="checkout-items-list"></ul>
+              <div class="summary-total">
+                <span class="label">Total:</span>
+                <span class="value" id="checkout-total-price">$0 MXN</span>
+              </div>
+            </div>
+
+            <div class="row g-3 mb-4">
+              <div class="col-md-6">
+                <label class="form-label">Nombre Completo *</label>
+                <input type="text" class="form-control" id="buyerName" required placeholder="Ej. Juan Pérez" />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Teléfono / WhatsApp *</label>
+                <input type="tel" class="form-control" id="buyerPhone" required placeholder="Ej. 951 123 4567" />
+              </div>
+            </div>
+
+            <div class="row g-3 mb-4">
+              <div class="col-md-6">
+                <label class="form-label">Servicio seleccionado</label>
+                <!-- Solo lectura: el servicio ya se eligió desde la tarjeta -->
+                <input type="text" class="form-control" id="serviceTypeDisplay" readonly />
+                <input type="hidden" id="serviceType" />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Barbero Preferido</label>
+                <select class="form-select" id="barberSelect">
+                  <option value="cualquiera">Cualquier Barbero</option>
+                  <option value="Carlos Martínez">Carlos Martínez</option>
+                  <option value="Javier Reyes">Javier Reyes</option>
+                  <option value="Miguel Ángel">Miguel Ángel</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label class="form-label">Fecha *</label>
+                <input type="date" class="form-control" id="deliveryDate" required />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Hora *</label>
+                <!-- Se llena dinámicamente con las horas disponibles -->
+                <select class="form-select" id="deliveryTime" required>
+                  <option value="">Selecciona primero la fecha</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="d-grid gap-2 mt-4">
+              <button type="submit" id="orderSubmitBtn" class="btn-submit-modal">
+                <span id="orderSubmitSpinner" class="spinner-border spinner-border-sm d-none" role="status"></span>
+                <span id="orderSubmitText">Confirmar Cita</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL ÉXITO -->
+  <div class="modal fade success-modal" id="successOrderModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content text-center p-4">
+        <div class="modal-body">
+          <div class="success-icon text-gold fs-1 mb-2"><i class="bi bi-check-circle-fill"></i></div>
+          <h4 class="success-title">¡Cita Confirmada!</h4>
+          <p class="success-text small mb-3">Te confirmaremos tu cita por WhatsApp. ¡Te esperamos!</p>
+          <button type="button" class="btn btn-gold px-5 py-2" data-bs-dismiss="modal">Entendido</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="constants.js"></script>
+  <script src="api.js"></script>
+  <script src="servicios.js"></script>
+  <script src="app.js"></script>
+  <script>
+    // Header con fondo al hacer scroll + enlace activo según la sección visible
+    (function () {
+      const header = document.getElementById('mainHeader');
+      const links = [...document.querySelectorAll('.main-header .nav-link[href^="#"]')];
+      const sections = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+
+      function onScroll() {
+        header.classList.toggle('scrolled', window.scrollY > 50);
+        const y = window.scrollY + 120;
+        let current = sections[0];
+        sections.forEach(s => { if (s.offsetTop <= y) current = s; });
+        links.forEach(a => a.classList.toggle('active', current && a.getAttribute('href') === '#' + current.id));
+      }
+      document.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      // Cerrar el menú móvil al elegir una opción
+      links.forEach(a => a.addEventListener('click', () => {
+        const nav = document.getElementById('mainNav');
+        if (nav.classList.contains('show')) bootstrap.Collapse.getOrCreateInstance(nav).hide();
+      }));
+    })();
+
+    // Filtros de la galería
+    (function () {
+      const buttons = document.querySelectorAll('#galleryFilters button');
+      const items = document.querySelectorAll('#galleryGrid .gallery-item');
+      buttons.forEach(btn => btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.dataset.filter;
+        items.forEach(it => it.classList.toggle('hidden-item', f !== 'all' && it.dataset.cat !== f));
+      }));
+    })();
+
+    // Formulario de contacto: abre WhatsApp con el mensaje ya redactado
+    (function () {
+      const form = document.getElementById('contactForm');
+      if (!form) return;
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const phone = (typeof CONFIG !== 'undefined' && CONFIG.business && CONFIG.business.phone) || '529514990142';
+        const v = id => document.getElementById(id).value.trim();
+        const lines = [
+          '💈 Hola BarberMate, les escribo desde la página web.',
+          'Nombre: ' + v('cfName'),
+          v('cfPhone') ? 'Teléfono: ' + v('cfPhone') : '',
+          v('cfSubject') ? 'Asunto: ' + v('cfSubject') : '',
+          'Mensaje: ' + v('cfMessage')
+        ].filter(Boolean);
+        window.open('https://wa.me/' + phone + '?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
+        form.reset();
+      });
+    })();
+  </script>
+</body>
+
+</html>

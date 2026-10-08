@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Servicios | BarberMate</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Inria+Sans:wght@300;400;700&family=Montserrat:wght@400;500;600;700;800&family=Lobster&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <!-- Íconos SVG reutilizables -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-mustache" viewBox="0 0 76 34">
+      <path fill="currentColor"
+        d="M38 8C32 8 30 12 24 12 18 12 14 6 7 6 3 6 1 8 0 10c3-1 6 0 8 2 4 4 6 14 16 18 6 3 10 1 14 1s8 2 14-1c10-4 12-14 16-18 2-2 5-3 8-2-1-2-3-4-7-4-7 0-11 6-17 6-6 0-8-4-14-4z" />
+    </symbol>
+  </svg>
+
+  <!-- BOTÓN FLOTANTE DE WHATSAPP -->
+  <div class="whatsapp-widget-container" id="wa-widget">
+    <div class="wa-popup" id="wa-popup">
+      <div class="wa-popup-header">
+        <div class="d-flex align-items-center gap-2">
+          <div class="wa-avatar">B</div>
+          <div>
+            <h6>BarberMate</h6>
+            <small class="opacity-75">Responde en minutos</small>
+          </div>
+        </div>
+        <button class="btn-close btn-close-white btn-sm" id="close-popup" aria-label="Cerrar"></button>
+      </div>
+      <div class="wa-popup-body p-3">
+        <div class="wa-bubble">
+          <p class="m-0">💈 ¡Hola! ¿Te gustaría agendar una cita?</p>
+        </div>
+      </div>
+      <div class="wa-popup-footer p-3 border-top">
+        <a href="#" class="btn btn-gold w-100" id="wa-widget-btn" target="_blank" rel="noopener">
+          <i class="bi bi-whatsapp"></i> Chatear por WhatsApp
+        </a>
+      </div>
+    </div>
+    <button class="whatsapp-btn" id="wa-main-trigger" aria-label="Abrir chat de WhatsApp">
+      <i class="bi bi-whatsapp"></i>
+      <span class="btn-text">WhatsApp</span>
+    </button>
+  </div>
+
+  <!-- HEADER / NAVEGACIÓN -->
+  <header class="main-header" id="mainHeader">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand brand-logo" href="index.html" aria-label="BarberMate">
+          <span class="brand-word">Barber</span>
+          <svg>
+            <use href="#i-mustache" />
+          </svg>
+        </a>
+        <div class="d-flex align-items-center gap-2 order-lg-last ms-auto ms-lg-3">
+          <!-- Carrito deshabilitado temporalmente
+          <button class="cart-btn" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas" aria-label="Mis citas">
+            <i class="bi bi-calendar-check"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-gold"
+              id="cart-badge">0</span>
+          </button>
+          -->
+          <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+            aria-label="Menú">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html#nosotros">Nosotros</a></li>
+            <li class="nav-item"><a class="nav-link active" href="servicios.html">Servicios</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html#galeria">Galería</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html#equipo">Equipo</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html#precios">Precios</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html#ubicacion">Ubicación</a></li>
+            <li class="nav-item"><a class="nav-link nav-cta" href="servicios.html">Reservar Cita</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ENCABEZADO -->
+  <section class="page-hero">
+    <div class="container">
+      <h1>Nuestros <span class="text-gold">Servicios</span></h1>
+      <p>Elige el servicio que mejor se adapte a tu estilo</p>
+    </div>
+  </section>
+
+  <!-- CATÁLOGO -->
+  <section class="catalog-section has-noise">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-3">
+          <div class="filter-card">
+            <h5><i class="bi bi-funnel-fill text-gold me-2"></i>Filtrar</h5>
+            <div class="mb-4">
+              <label class="form-label">Categoría</label>
+              <select id="categoryFilter" class="form-select" onchange="applyFilters()">
+                <option value="all">Todos los servicios</option>
+              </select>
+            </div>
+            <button class="btn btn-outline-gold w-100 py-2" onclick="resetFilters()">
+              <i class="bi bi-arrow-counterclockwise"></i> Limpiar filtros
+            </button>
+          </div>
+        </div>
+        <div class="col-lg-9">
+          <div class="d-flex justify-content-between align-items-center mb-4 pb-2 catalog-count">
+            <span class="small">Mostrando <strong id="serviceCount" class="text-gold">0</strong> servicios</span>
+          </div>
+          <div class="row g-4" id="catalog-container">
+            <div class="col-12 text-center py-5">
+              <div class="spinner-border text-gold" role="status" style="width:3rem;height:3rem;"></div>
+              <p class="text-muted mt-3">Cargando servicios...</p>
+            </div>
+          </div>
+          <div id="noResults" class="text-center py-5 d-none">
+            <i class="bi bi-emoji-frown display-4 text-muted mb-3 d-block"></i>
+            <h5>No encontramos servicios</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="row g-5 align-items-start">
+        <div class="col-lg-4">
+          <div class="footer-heading">
+            <h4>Nosotros<small>Quiénes somos</small></h4>
+          </div>
+          <p class="footer-text">BarberMate es una barbería premium en el Centro Histórico de Oaxaca. Cortes clásicos,
+            afeitado con navaja y atención personalizada desde 2018.</p>
+        </div>
+        <div class="col-lg-4">
+          <div class="footer-heading">
+            <h4>Redes sociales<small>Síguenos</small></h4>
+          </div>
+          <div class="social-row">
+            <a href="https://facebook.com/barbermate" target="_blank" rel="noopener" aria-label="Facebook"><i
+                class="bi bi-facebook"></i></a>
+            <a href="https://instagram.com/barbermate" target="_blank" rel="noopener" aria-label="Instagram"><i
+                class="bi bi-instagram"></i></a>
+            <a href="https://wa.me/529514990142" target="_blank" rel="noopener" aria-label="WhatsApp"><i
+                class="bi bi-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="footer-box">
+            <p>Agenda tu próxima cita</p>
+            <a href="servicios.html" class="btn btn-gold w-100 py-2">Reservar cita</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 BarberMate. Todos los derechos reservados.</div>
+  </footer>
+
+  <!-- OFFCANVAS CARRITO -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title"><i class="bi bi-calendar-check text-gold me-2"></i>Mis <span
+          class="text-gold">Citas</span></h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column justify-content-between p-0">
+      <div class="cart-items-wrapper p-3 overflow-y-auto" id="cart-items-container">
+        <div class="text-center py-5 text-muted">
+          <i class="bi bi-calendar-x display-3 mb-2 d-block opacity-50"></i>
+          <p class="mb-0">No tienes citas agendadas</p>
+        </div>
+      </div>
+      <div class="cart-footer p-3">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="total-label fw-bold">Total:</span>
+          <span class="total-value fw-bold text-gold fs-5" id="cart-total-price">$0 MXN</span>
+        </div>
+        <div class="d-grid gap-2">
+          <button class="btn btn-gold py-3" id="btn-proceed-checkout" onclick="openCheckoutModal()">
+            Confirmar Cita <i class="bi bi-arrow-right ms-2"></i>
+          </button>
+          <button class="btn btn-link btn-sm text-decoration-none" onclick="clearCart()">Vaciar Carrito</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL CHECKOUT -->
+  <div class="modal fade" id="orderModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="bi bi-calendar-check text-gold me-2"></i>Confirmar <span
+              class="text-gold">Cita</span></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <form id="orderForm">
+            <div class="hp-field" aria-hidden="true">
+              <label for="formWebsite">Deja este campo vacío</label>
+              <input type="text" id="formWebsite" name="website" tabindex="-1" autocomplete="off">
+            </div>
+
+            <div class="summary-box">
+              <div class="summary-title"><i class="bi bi-list-ul me-2"></i>Resumen de tu cita</div>
+              <ul class="summary-items" id="checkout-items-list"></ul>
+              <div class="summary-total">
+                <span class="label">Total:</span>
+                <span class="value" id="checkout-total-price">$0 MXN</span>
+              </div>
+            </div>
+
+            <div class="row g-3 mb-4">
+              <div class="col-md-6">
+                <label class="form-label">Nombre Completo *</label>
+                <input type="text" class="form-control" id="buyerName" required placeholder="Ej. Juan Pérez" />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Teléfono / WhatsApp *</label>
+                <input type="tel" class="form-control" id="buyerPhone" required placeholder="Ej. 951 123 4567" />
+              </div>
+            </div>
+
+            <div class="row g-3 mb-4">
+              <div class="col-md-6">
+                <label class="form-label">Servicio seleccionado</label>
+                <!-- Solo lectura: el servicio ya se eligió desde la tarjeta -->
+                <input type="text" class="form-control" id="serviceTypeDisplay" readonly />
+                <input type="hidden" id="serviceType" />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Barbero Preferido</label>
+                <select class="form-select" id="barberSelect">
+                  <option value="cualquiera">Cualquier Barbero</option>
+                  <option value="Carlos Martínez">Carlos Martínez</option>
+                  <option value="Javier Reyes">Javier Reyes</option>
+                  <option value="Miguel Ángel">Miguel Ángel</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label class="form-label">Fecha *</label>
+                <input type="date" class="form-control" id="deliveryDate" required />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Hora *</label>
+                <!-- Se llena dinámicamente con las horas disponibles -->
+                <select class="form-select" id="deliveryTime" required>
+                  <option value="">Selecciona primero la fecha</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="d-grid gap-2 mt-4">
+              <button type="submit" id="orderSubmitBtn" class="btn-submit-modal">
+                <span id="orderSubmitSpinner" class="spinner-border spinner-border-sm d-none" role="status"></span>
+                <span id="orderSubmitText">Confirmar Cita</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL ÉXITO -->
+  <div class="modal fade success-modal" id="successOrderModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content text-center p-4">
+        <div class="modal-body">
+          <div class="success-icon text-gold fs-1 mb-2"><i class="bi bi-check-circle-fill"></i></div>
+          <h4 class="success-title">¡Cita Confirmada!</h4>
+          <p class="success-text small mb-3">Te confirmaremos tu cita por WhatsApp. ¡Te esperamos!</p>
+          <button type="button" class="btn btn-gold px-5 py-2" data-bs-dismiss="modal">Entendido</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OFFCANVAS CARRITO -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title"><i class="bi bi-calendar-check text-gold me-2"></i>Mis <span
+          class="text-gold">Citas</span></h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column justify-content-between p-0">
+      <div class="cart-items-wrapper p-3 overflow-y-auto" id="cart-items-container">
+        <div class="text-center py-5 text-muted">
+          <i class="bi bi-calendar-x display-3 mb-2 d-block opacity-50"></i>
+          <p class="mb-0">No tienes citas agendadas</p>
+        </div>
+      </div>
+      <div class="cart-footer p-3">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="total-label fw-bold">Total:</span>
+          <span class="total-value fw-bold text-gold fs-5" id="cart-total-price">$0 MXN</span>
+        </div>
+        <div class="d-grid gap-2">
+          <button class="btn btn-gold py-3" id="btn-proceed-checkout" onclick="openCheckoutModal()">
+            Confirmar Cita <i class="bi bi-arrow-right ms-2"></i>
+          </button>
+          <button class="btn btn-link btn-sm text-decoration-none" onclick="clearCart()">Vaciar Carrito</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL CHECKOUT -->
+  <div class="modal fade" id="orderModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="bi bi-calendar-check text-gold me-2"></i>Confirmar <span
+              class="text-gold">Cita</span></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <form id="orderForm">
+            <div class="hp-field" aria-hidden="true">
+              <label for="formWebsite">Deja este campo vacío</label>
+              <input type="text" id="formWebsite" name="website" tabindex="-1" autocomplete="off">
+            </div>
+            <div class="summary-box">
+              <div class="summary-title"><i class="bi bi-list-ul me-2"></i>Resumen de tu cita</div>
+              <ul class="summary-items" id="checkout-items-list"></ul>
+              <div class="summary-total">
+                <span class="label">Total:</span>
+                <span class="value" id="checkout-total-price">$0 MXN</span>
+              </div>
+            </div>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6">
+                <label class="form-label">Nombre Completo *</label>
+                <input type="text" class="form-control" id="buyerName" required placeholder="Ej. Juan Pérez" />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Teléfono / WhatsApp *</label>
+                <input type="tel" class="form-control" id="buyerPhone" required placeholder="Ej. 951 123 4567" />
+              </div>
+            </div>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6">
+                <label class="form-label">Servicio *</label>
+                <select class="form-select" id="serviceType" required>
+                  <option value="">Selecciona un servicio</option>
+                  <option value="Corte Clásico">Corte Clásico - $300</option>
+                  <option value="Corte + Barba">Corte + Barba - $500</option>
+                  <option value="Arreglo de Barba">Arreglo de Barba - $250</option>
+                  <option value="Afeitado Clásico">Afeitado Clásico - $350</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Barbero Preferido</label>
+                <select class="form-select" id="barberSelect">
+                  <option value="cualquiera">Cualquier Barbero</option>
+                  <option value="Carlos Martínez">Carlos Martínez</option>
+                  <option value="Javier Reyes">Javier Reyes</option>
+                  <option value="Miguel Ángel">Miguel Ángel</option>
+                </select>
+              </div>
+            </div>
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label class="form-label">Fecha *</label>
+                <input type="date" class="form-control" id="deliveryDate" required />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Hora *</label>
+                <input type="time" class="form-control" id="deliveryTime" required />
+              </div>
+            </div>
+            <div class="d-grid gap-2 mt-4">
+              <button type="submit" id="orderSubmitBtn" class="btn-submit-modal">
+                <span id="orderSubmitSpinner" class="spinner-border spinner-border-sm d-none" role="status"></span>
+                <span id="orderSubmitText">Confirmar Cita <i class="bi bi-whatsapp ms-2"></i></span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL ÉXITO -->
+  <div class="modal fade success-modal" id="successOrderModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content text-center p-4">
+        <div class="modal-body">
+          <div class="success-icon text-gold fs-1 mb-2"><i class="bi bi-check-circle-fill"></i></div>
+          <h4 class="success-title">¡Cita Confirmada!</h4>
+          <p class="success-text small mb-3">Te confirmaremos tu cita por WhatsApp. ¡Te esperamos!</p>
+          <button type="button" class="btn btn-gold px-5 py-2" data-bs-dismiss="modal">Entendido</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="constants.js"></script>
+  <script src="api.js"></script>
+  <script src="servicios.js"></script>
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener('scroll', () => {
+      document.getElementById('mainHeader').classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+  </script>
+</body>
+
+</html>
