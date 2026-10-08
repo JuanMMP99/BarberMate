@@ -2,7 +2,7 @@ const CONFIG = {
   API_URL: 'https://script.google.com/macros/s/AKfycbx0fmG1PYBIREwHKpLFb6B9sUPCwaeLvmT7EHO9FRtP1Lc5lxP_TOwTrmBcWJaFegVf/exec',
 
   business: {
-    name: "BarberMate",
+    name: "Barber",
     phone: "529514990142",
     address: "Centro Histórico, 68000 Oaxaca de Juárez, Oax.",
     schedule: "Lunes a Sábado: 9:00 AM - 9:00 PM | Domingo: 10:00 AM - 6:00 PM",
@@ -11,8 +11,8 @@ const CONFIG = {
       directionsUrl: "https://www.google.com/maps/search/?api=1&query=Centro+Hist%C3%B3rico+Oaxaca+de+Ju%C3%A1rez"
     },
     socials: {
-      facebook: "https://facebook.com/barbermate",
-      instagram: "https://instagram.com/barbermate"
+      facebook: "https://facebook.com/#",
+      instagram: "https://instagram.com/#"
     }
   },
 
@@ -23,7 +23,7 @@ const CONFIG = {
   },
 
   topAlert: {
-    text: "✂️ ¡Bienvenido a BarberMate! Agenda tu cita y obtén un 10% de descuento en tu primer corte."
+    text: "✂️ ¡Bienvenido a Barber! Agenda tu cita y obtén un 10% de descuento en tu primer corte."
   },
 
   navbar: {

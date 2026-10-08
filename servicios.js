@@ -1,5 +1,5 @@
 // ============================================================
-// BARBERMATE - SERVICIOS
+// Barber - SERVICIOS
 // Catálogo (datos sin cambios) + render con el nuevo diseño
 // ============================================================
 

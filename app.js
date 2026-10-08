@@ -1,5 +1,5 @@
 // ============================================================
-// BARBERMATE - APP.JS
+// Barber - APP.JS
 // Lógica principal del frontend (modo "reserva directa")
 // ============================================================
 
@@ -7,7 +7,7 @@
 // CARRITO (comentado - no se usa por ahora, se deja para el futuro)
 // ------------------------------------------------------------
 /*
-let cart = JSON.parse(localStorage.getItem('barbermate_cart')) || [];
+let cart = JSON.parse(localStorage.getItem('Barber_cart')) || [];
 
 function addToCart(serviceId) { ... }
 function updateQuantity(serviceId, delta) { ... }
@@ -28,7 +28,7 @@ let barberoActual = 'cualquiera';
 // INICIALIZACIÓN
 // ============================================================
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("🚀 Iniciando BarberMate App...");
+  console.log("🚀 Iniciando Barber App...");
 
   const modalElem = document.getElementById('orderModal');
   if (modalElem) {
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupFormHandler();
   setupFechaHoraListeners();
 
-  console.log("✅ BarberMate App inicializada");
+  console.log("✅ Barber App inicializada");
 });
 
 // ============================================================
@@ -271,7 +271,7 @@ function setupWhatsAppWidget() {
 
   if (widgetBtn) {
     const phone = CONFIG?.business?.phone || "529514990142";
-    widgetBtn.href = `https://wa.me/${phone}?text=${encodeURIComponent('💈 ¡Hola! Me gustaría agendar una cita en BarberMate.')}`;
+    widgetBtn.href = `https://wa.me/${phone}?text=${encodeURIComponent('💈 ¡Hola! Me gustaría agendar una cita en Barber.')}`;
   }
 }
 

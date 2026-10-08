@@ -1,5 +1,5 @@
 /**
- * BarberMate - Sistema de Gestión de Citas para Barbería
+ * Barber - Sistema de Gestión de Citas para Barbería
  * CRM para barbería con Google Sheets como base de datos
  */
 
@@ -26,11 +26,11 @@ const SESSION_DURATION_SECONDS = 21600; // 6 horas
 const ESTADOS_VALIDOS = ['Pendiente', 'Confirmada', 'En Progreso', 'Completada', 'Cancelada'];
 
 // Datos de marca
-const BRAND_NAME = 'BarberMate';
+const BRAND_NAME = 'Barber';
 const BRAND_PHONE = '52 951 499 0142';
 
 // Respaldo semanal
-const BACKUP_FOLDER_NAME = 'Respaldos CRM - BarberMate';
+const BACKUP_FOLDER_NAME = 'Respaldos CRM - Barber';
 const MAX_BACKUPS_TO_KEEP = 12;
 
 /* ==========================================================================
@@ -153,7 +153,7 @@ function doGet(e) {
 
     if (adminDeploymentUrl && currentUrl === adminDeploymentUrl) {
       return HtmlService.createHtmlOutputFromFile('Admin')
-        .setTitle('Panel Administrativo - BarberMate')
+        .setTitle('Panel Administrativo - Barber')
         .addMetaTag('viewport', 'width=device-width, initial-scale=1')
         .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
     }
@@ -169,7 +169,7 @@ function doGet(e) {
 
     if (!action) {
       return buildResponse({
-        message: 'API de BarberMate funcionando correctamente',
+        message: 'API de Barber funcionando correctamente',
         actions: ['testConnection']
       }, true);
     }
@@ -351,7 +351,7 @@ function handleCrearCita(data) {
 
     const htmlBody = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; border: 1px solid #c9a84c; padding: 20px; border-radius: 8px;">
-        <h2 style="color: #c9a84c; border-bottom: 2px solid #c9a84c; padding-bottom: 8px;">💈 Nueva Cita en BarberMate</h2>
+        <h2 style="color: #c9a84c; border-bottom: 2px solid #c9a84c; padding-bottom: 8px;">💈 Nueva Cita en Barber</h2>
         <p>Se ha registrado una nueva cita con los siguientes detalles:</p>
         <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
           <tr><td style="padding: 8px; font-weight: bold; background-color: #f8f9fa;">Cliente:</td><td style="padding: 8px;">${cliente}</td></tr>
@@ -518,8 +518,8 @@ function crearPrimerAdmin() {
   }
 
   // 🔧 EDITA ESTOS TRES VALORES ANTES DE EJECUTAR:
-  const nombre = 'BarberMate Admin';
-  const email = 'admin@barbermate.com';
+  const nombre = 'Barber Admin';
+  const email = 'admin@Barber.com';
   const passwordPlano = 'admin123';
 
   crearOActualizarUsuario_(nombre, email, passwordPlano, 'admin', true);
